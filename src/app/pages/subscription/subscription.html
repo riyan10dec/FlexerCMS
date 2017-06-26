@@ -1,0 +1,51 @@
+<form class="form-horizontal">
+<ba-card>
+
+  <div class="form-group row">
+    <label for="subscriptionType" class="col-sm-3 form-control-label text-right">Subscription Type</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="subscriptionType" disabled value="Trial">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="subscriptionStatus" class="col-sm-3 form-control-label text-right">Subscription Status</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="subscriptionStatus" disabled value="Valid">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-3 form-control-label text-right">Subscription Period</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="subscriptionStart" value="Start" disabled>
+    </div>
+    <div class="col-sm-1 text-center" >
+      _
+    </div>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="subscriptionEnd" value="End" disabled>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="subscriptionUserCount" class="col-sm-3 form-control-label text-right">Registered Users</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="subscriptionUserCount" disabled value="100">
+    </div>
+  </div>
+</ba-card>
+
+  <!--<div class="form-group row">
+    <div class="offset-sm-2 col-sm-10">
+      <div class="checkbox">
+        <ba-checkbox [(ngModel)]="isRemember" [label]="'Remember me'" [ngModelOptions]="{standalone: true}"></ba-checkbox>
+      </div>
+    </div>-->
+  <!--</div>-->
+  <!--<div class="form-group row">
+    <div class="offset-sm-2 col-sm-10">
+      <button type="submit" class="btn btn-warning">Sign in</button>
+    </div>
+  </div>-->
+</form>
+
+<router-outlet></router-outlet>

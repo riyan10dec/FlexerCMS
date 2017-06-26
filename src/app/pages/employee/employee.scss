@@ -1,0 +1,15 @@
+@import "../../theme/sass/conf/conf.scss";
+
+select.form-control[multiple] {
+  overflow-y: scroll;
+}
+
+select.form-control {
+  color: $default;
+}
+.form-control-label{
+    margin-top: 10px;
+}
+.form-button{
+    margin-top: 10px;
+}

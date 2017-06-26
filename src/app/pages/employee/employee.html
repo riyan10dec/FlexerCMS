@@ -1,0 +1,74 @@
+<div class="widgets" *ngIf="!IsAddEmployee">
+
+    <ba-card  baCardClass="with-scroll" class="smart-table-container">
+      <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+      <div class="text-right form-button" >
+        <button type="button" class="btn btn-warning text-right" (click)="NavigateAddNew()">Add New</button>
+      </div>
+    </ba-card>
+
+</div>
+
+<ba-card title="Add New Employee" baCardClass="with-scroll" *ngIf="IsAddEmployee">
+    <form #form="ngForm" class="formHorizontal" (ngSubmit)="AddNewEmployee(form.value)">
+
+        <div class="form-group row">
+            <label for="userName" class="col-sm-3 form-control-label text-right">User Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="userName" placeholder="Full Name">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="userID" class="col-sm-3 form-control-label text-right">User ID</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="userName" placeholder="User ID for Login">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="password" class="col-sm-3 form-control-label text-right">Password</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="password">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="role" class="col-sm-3 form-control-label text-right">Role</label>
+            <div class="col-sm-9">
+            <select class="form-control" id="role">
+                <option>Employee</option>
+                <option>Supervisor</option>
+                <option>Manager</option>
+                <option>Vice President</option>
+                <option>Director</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="role" class="col-sm-3 form-control-label text-right">Superior</label>
+            <div class="col-sm-9">
+            <select class="form-control" id="role">
+                <option>Sugeng</option>
+                <option>Tukul</option>
+                <option>Sukimin</option>
+                <option>Tukiyat</option>
+                <option>Sarimin</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="email" class="col-sm-3 form-control-label text-right">Email</label>
+            <div class="col-sm-9">
+                <input type="email" class="form-control" id="email">
+            </div>
+        </div>
+        
+        <div class="text-right" >
+        <button type="submit" class="btn btn-warning text-right">Save</button>
+      </div>
+    </form>
+</ba-card>
+<router-outlet></router-outlet>

@@ -1,0 +1,47 @@
+<div class="widgets" *ngIf="!IsAddURLCategory">
+
+    <ba-card  baCardClass="with-scroll" class="smart-table-container">
+      <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+      <div class="text-right form-button" >
+        <button type="button" class="btn btn-warning text-right" (click)="NavigateAddNew()">Add New</button>
+      </div>
+    </ba-card>
+
+</div>
+
+<ba-card title="Add New URL Category" baCardClass="with-scroll" *ngIf="IsAddURLCategory">
+    <form #form="ngForm" class="formHorizontal" (ngSubmit)="AddNewURLCategory(form.value)">
+
+        <div class="form-group row">
+            <label for="URLName" class="col-sm-3 form-control-label text-right">URL Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="URLName">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="role" class="col-sm-3 form-control-label text-right">URL Category</label>
+            <div class="col-sm-9">
+            <select class="form-control" id="role">
+                <option>Employee</option>
+                <option>Supervisor</option>
+                <option>Manager</option>
+                <option>Vice President</option>
+                <option>Director</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="role" class="col-sm-3 form-control-label text-right">Work URL</label>
+            <div class="col-sm-9 form-control-check">
+                <ba-checkbox [(ngModel)]="isWork" [label]="'Work'" [ngModelOptions]="{standalone: true}"></ba-checkbox>
+            </div>
+        </div>
+        
+        <div class="text-right" >
+        <button type="submit" class="btn btn-warning text-right">Save</button>
+      </div>
+    </form>
+</ba-card>
+<router-outlet></router-outlet>
