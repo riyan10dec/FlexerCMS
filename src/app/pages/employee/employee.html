@@ -1,6 +1,25 @@
+<form>
+    <input #filter (keyup)="filterNodes(filter.value, tree)" placeholder="filter nodes"/>
+  </form>
+  <div style="height: 400px; width: 300px">
+
+    <tree-root
+      #tree
+      [nodes]="nodes"
+      [options]="customTemplateStringOptions"
+      [focused]="true"
+      (onMoveNode)="onMoveNode($event)"
+    >
+      <ng-template #treeNodeTemplate let-node>
+        <span>{{ node.data.name }}</span>
+      </ng-template>
+      <ng-template #loadingTemplate>Loading, please hold....</ng-template>
+    </tree-root>
+  </div>
 <div class="widgets" *ngIf="!IsAddEmployee">
 
     <ba-card  baCardClass="with-scroll" class="smart-table-container">
+      
       <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
       <div class="text-right form-button" >
         <button type="button" class="btn btn-warning text-right" (click)="NavigateAddNew()">Add New</button>
@@ -9,34 +28,26 @@
 
 </div>
 
-<ba-card title="Add New Employee" baCardClass="with-scroll" *ngIf="IsAddEmployee">
+<ba-card title="Add New Employee" baCardClass="with-scroll" *ngIf="isAddEmployee">
     <form #form="ngForm" class="formHorizontal" (ngSubmit)="AddNewEmployee(form.value)">
 
         <div class="form-group row">
             <label for="userName" class="col-sm-3 form-control-label text-right">User Name</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="userName" placeholder="Full Name">
+                <input type="text" class="form-control" [(ngModel)]="employee.username" id="userName" placeholder="Full Name">
             </div>
         </div>
-
-        <div class="form-group row">
-            <label for="userID" class="col-sm-3 form-control-label text-right">User ID</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" id="userName" placeholder="User ID for Login">
-            </div>
-        </div>
-
         <div class="form-group row">
             <label for="password" class="col-sm-3 form-control-label text-right">Password</label>
             <div class="col-sm-9">
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" [(ngModel)]="employee.password"  id="password">
             </div>
         </div>
 
         <div class="form-group row">
             <label for="role" class="col-sm-3 form-control-label text-right">Role</label>
             <div class="col-sm-9">
-            <select class="form-control" id="role">
+            <select class="form-control" id="role" [(ngModel)]="employee.role" >
                 <option>Employee</option>
                 <option>Supervisor</option>
                 <option>Manager</option>
@@ -49,7 +60,7 @@
         <div class="form-group row">
             <label for="role" class="col-sm-3 form-control-label text-right">Superior</label>
             <div class="col-sm-9">
-            <select class="form-control" id="role">
+            <select class="form-control" id="superior" [(ngModel)]="employee.superiorID">
                 <option>Sugeng</option>
                 <option>Tukul</option>
                 <option>Sukimin</option>
@@ -62,7 +73,7 @@
         <div class="form-group row">
             <label for="email" class="col-sm-3 form-control-label text-right">Email</label>
             <div class="col-sm-9">
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control" [(ngModel)]="employee.email" id="email">
             </div>
         </div>
         

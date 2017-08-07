@@ -1,0 +1,33 @@
+import { OnChanges, Renderer, ElementRef, TemplateRef } from '@angular/core';
+import { TreeModel } from '../models/tree.model';
+import { TreeDraggedElement } from '../models/tree-dragged-element.model';
+import { TreeOptions } from '../models/tree-options.model';
+export declare class TreeComponent implements OnChanges {
+    treeModel: TreeModel;
+    treeDraggedElement: TreeDraggedElement;
+    private renderer;
+    private elementRef;
+    _nodes: any[];
+    _options: TreeOptions;
+    loadingTemplate: TemplateRef<any>;
+    treeNodeTemplate: TemplateRef<any>;
+    treeNodeFullTemplate: TemplateRef<any>;
+    nodes: any[];
+    options: TreeOptions;
+    focused: boolean;
+    onToggleExpanded: any;
+    onActivate: any;
+    onDeactivate: any;
+    onFocus: any;
+    onBlur: any;
+    onUpdateData: any;
+    onInitialized: any;
+    onMoveNode: any;
+    onLoadChildren: any;
+    onChangeFilter: any;
+    onEvent: any;
+    constructor(treeModel: TreeModel, treeDraggedElement: TreeDraggedElement, renderer: Renderer, elementRef: ElementRef);
+    onKeydown($event: any): void;
+    onMousedown($event: any): void;
+    ngOnChanges(changes: any): void;
+}

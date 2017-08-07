@@ -5,5 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './subscription.html',
 })
 export class SubscriptionComponent {
-  constructor() {}
+  constructor() {
+  }
 }
