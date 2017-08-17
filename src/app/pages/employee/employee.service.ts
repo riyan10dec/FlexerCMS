@@ -38,9 +38,9 @@ export class EmployeeService {
             .map(r => r.json());
     }
     moveNode(payload): any {
-        return this.apiService.post(this.moveNodeQuery, 
-            {
-                data : payload,
-            }).map(data => data.result);
+        // return this.apiService.post(this.moveNodeQuery, 
+        //     {
+        //         data : payload,
+        //     }).map(data => data.result);
     }
 }
