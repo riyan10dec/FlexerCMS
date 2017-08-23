@@ -15,48 +15,58 @@ export const PAGES_MENU = [
           },
         },
       },
-      {
-        path: 'subscription',
-        data: {
-          menu: {
-            title: 'general.menu.subscription',
-            icon: 'ion-edit',
-            order: 200,
-          },
-        },
-      },
-      {
-        path: 'employee',
-        data: {
-          menu: {
-            title: 'general.menu.employee',
-            icon: 'ion-edit',
-            order: 300,
-          }
-        }
-      },
+      // {
+      //   path: 'subscription',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.subscription',
+      //       icon: 'ion-edit',
+      //       order: 200,
+      //     },
+      //   },
+      // },
+      // {
+      //   path: 'employee',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.employee',
+      //       icon: 'ion-edit',
+      //       order: 300,
+      //     }
+      //   }
+      // },
+     
+      // {
+      //   path: 'application-category',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.application-category',
+      //       icon: 'ion-edit',
+      //       order: 300,
+      //     }
+      //   }
+      // },
 
+      // {
+      //   path: 'url-category',
+      //   data: {
+      //     menu: {
+      //       title: 'general.menu.url-category',
+      //       icon: 'ion-edit',
+      //       order: 300,
+      //     }
+      //   }
+      // }, 
       {
-        path: 'application-category',
+        path: 'fxregister',
         data: {
           menu: {
-            title: 'general.menu.application-category',
-            icon: 'ion-edit',
+            title: 'User Registration',
+            icon: 'ion-person-stalker',
             order: 300,
           }
         }
-      },
-
-      {
-        path: 'url-category',
-        data: {
-          menu: {
-            title: 'general.menu.url-category',
-            icon: 'ion-edit',
-            order: 300,
-          }
-        }
-      },
+      }, 
       // {
       //   path: 'editors',
       //   data: {

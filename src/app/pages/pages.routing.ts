@@ -30,7 +30,8 @@ export const routes: Routes = [
       { path: 'subscription', loadChildren: './subscription/subscription.module#SubscriptionModule' },
       { path: 'employee', loadChildren: './employee/employee.module#EmployeeModule' },
       { path: 'application-category', loadChildren: './application-category/application-category.module#ApplicationCategoryModule' },
-      { path: 'url-category', loadChildren: './url-category/url-category.module#URLCategoryModule' },
+      { path: 'url-category', loadChildren: './url-category/url-category.module#URLCategoryModule' },   
+      { path: 'fxregister', loadChildren: './fxregister/fxregister.module#FXRegisterModule' },
     ]
   }
 ];
