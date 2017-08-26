@@ -32,6 +32,7 @@ export const routes: Routes = [
       { path: 'application-category', loadChildren: './application-category/application-category.module#ApplicationCategoryModule' },
       { path: 'url-category', loadChildren: './url-category/url-category.module#URLCategoryModule' },   
       { path: 'fxregister', loadChildren: './fxregister/fxregister.module#FXRegisterModule' },
+      { path: 'fxdepartment', loadChildren: './fxdepartment/fxdepartment.module#FXDepartmentModule' },
     ]
   }
 ];

@@ -67,6 +67,16 @@ export const PAGES_MENU = [
           }
         }
       }, 
+      {
+        path: 'fxdepartment',
+        data: {
+          menu: {
+            title: 'Department',
+            icon: 'ion-person-stalker',
+            order: 300,
+          }
+        }
+      }, 
       // {
       //   path: 'editors',
       //   data: {
