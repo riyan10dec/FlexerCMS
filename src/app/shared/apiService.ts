@@ -1,4 +1,4 @@
-import { ConnectionAPI } from '../../environments/connectionAPI';
+import { connectionAPI } from '../../environments/connectionAPI';
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
@@ -12,69 +12,61 @@ export class ApiService {
   constructor(
     private http: Http,
     private jwtService: JwtService,
-    
-  ) { }
-  private hostname: string= ConnectionAPI.getHost();
-  
+  ) {
+    this.setHeaders();
+    this.connection = connectionAPI.apiURL;
+  }
+  // private hostname: string= connectionAPI.getHost();
+  private headers: Headers = new Headers();
+  private connection: string;
+
   private setHeaders(): Headers {
-    // const headersConfig = {
-    //   'Content-Type' : 'text/plain',
-    //   'Accept': 'application/json',
-    //   'Access-Control-Allow-Origin': '*',
-    //   'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDM3NTc4NTIsIm5hbWUiOiI5MyJ9.mSro0V7-jrFKYV3yrdbCRaYqeUG7f3WzSC4EdbbG9ms'
-    // };
-    let header: Headers = new Headers();
-    const token = 'asd';
-    header.append('Content-Type', 'text/plain');
-    header.append('Accept', 'application/json');
-    header.append('Authorization', 'Bearer '+ token);
-    header.append('Access-Control-Allow-Headers', 'Content-Type');
-    return new Headers(header);
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDM4MjczMTUsIm5hbWUiOiIxMDcifQ.5M-AXuutQ9ICUoH67XeETVswWNAC1kEUt9i28Tn763M';
+
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append('Accept', 'application/json');
+    this.headers.append('Authorization', 'Bearer ' + token);
+    return this.headers;
   }
 
-  private formatErrors(error: any) { 
-    return Observable.throw(error.json());
+  private formatErrors(error: any) {
+    return Observable.throw(error);
   }
 
   get(path: string, params: URLSearchParams = new URLSearchParams()): Observable<any> {
-    let header: Headers = new Headers();
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDM3NTc4NTIsIm5hbWUiOiI5MyJ9.mSro0V7-jrFKYV3yrdbCRaYqeUG7f3WzSC4EdbbG9ms';
-    header.append('Content-Type', 'text/plain');
-    header.append('Accept', 'application/json');
-    header.append('Authorization', 'Bearer '+ token);
-    return this.http.get(`${this.hostname}${path}`,{headers: header})
-      .catch(this.formatErrors)
-      .map((res: Response) => res.json());
+    return this.http.get(
+      `${this.connection}${path}`,
+      { headers: this.headers })
+      .map((res: Response) => res.json())
+      .catch(this.formatErrors);
   }
 
   put(path: string, body: Object = {}): Observable<any> {
     return this.http.put(
-      `${this.hostname}${path}`,
+      `${this.connection}${path}`,
       JSON.stringify(body),
-      { headers: this.setHeaders() },
+      { headers: this.headers },
     )
       .map((res: Response) => res.json())
       .catch(this.formatErrors);
   }
 
   post(path: string, body: Object = {}): Observable<any> {
-      return this.http.post(
-        `${this.hostname}${path}`,
+    return this.http.post(
+      `${this.connection}${path}`,
       JSON.stringify(body),
-      { headers: this.setHeaders() },
+      { headers: this.headers },
     )
       .map((res: Response) => res.json())
       .catch(this.formatErrors);
-      
   }
 
   delete(path): Observable<any> {
     return this.http.delete(
-      `${ConnectionAPI}${path}`,
-      { headers: this.setHeaders() },
+      `${this.connection}${path}`,
+      { headers: this.headers },
     )
       .catch(this.formatErrors)
       .map((res: Response) => res.json());
-
   }
 }

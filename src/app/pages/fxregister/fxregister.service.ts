@@ -9,9 +9,10 @@ export class FXRegisterService {
 
     // private hostname: string=this.apiService.getMessages();
     private getEmployeeQuery: string = '/cms/getEmployee/@0';
-    // private addEmployeeQuery: string = '/cms/addEmployee';
-    private addEmployeeQuery: string = '/cms/addEmployee1';
+    private addEmployeeQuery: string = '/cms/addEmployee';
+    // private addEmployeeQuery: string = '/cms/addEmployee1';
     private editEmployeeQuery: string = '/cms/editEmployee';
+    private getSuperiorQuery: string = '/cms/GetSubs/@0';
     // private getInitialTreeQuery: string = '/cms/initialTree/@0';
     // private getChildQuery: string = '/cms/childTree/@0/@1';
 
@@ -20,8 +21,15 @@ export class FXRegisterService {
     //         .map((data: {employee: Employee}) => data.employee);
     // }
     addEmployee(payload): Observable<any> {
-        return this.apiService.post(this.addEmployeeQuery, JSON.stringify(payload)).map(data =>
-            data);
+        return this.apiService.post(this.addEmployeeQuery, payload)
+        .map(data => data.result);
+    }
+    getSuperior(userid): Observable<any> {
+        return this.apiService.get(this.getSuperiorQuery.replace('@0', userid))
+        .map(data => data);
+    }
+    getPing():Observable<any> {
+        return this.apiService.get('/ping').map(data=>data.result);
     }
     // editEmployee(payload): any {
     //     return this.apiService.post(this.editEmployeeQuery, 

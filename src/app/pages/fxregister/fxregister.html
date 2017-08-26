@@ -1,12 +1,12 @@
 <div class="auth-main">
   <div class="auth-block">
-    <h1>Sign up to Flexer</h1>
+    <h1>Register User to Flexer</h1>
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
       <div class="form-group row" [ngClass]="{'has-error': (!name.valid && name.touched), 'has-success': (name.valid && name.touched)}">
         <label for="inputName" class="col-sm-2 control-label">Name</label>
 
         <div class="col-sm-10">
-          <input [formControl]="name" type="text" class="form-control" id="inputName" placeholder="Full Name">
+          <input [formControl]="name" [(ngModel)]="fxRegister.name" type="text" class="form-control" id="inputName" placeholder="Full Name">
         </div>
       </div>
       <div class="form-group row" [ngClass]="{'has-error': (!id.valid && id.touched), 'has-success': (id.valid && id.touched)}">
@@ -30,13 +30,18 @@
           <input [formControl]="department" type="text" class="form-control" id="inputDepartment" placeholder="Department">
         </div>
       </div>
-      <!-- <div class="form-group row" [ngClass]="{'has-error': (!superior.valid && superior.touched), 'has-success': (superiorid.valid && superior.touched)}">
-        <label for="superior" class="col-sm-2 control-label">Superior</label>
+      <div class="form-group row">
+        <label for="inputSuperior" class="col-sm-2 control-label">Superior</label>
+
 
         <div class="col-sm-10">
-          <input [formControl]="superior" type="text" class="form-control" id="superior" placeholder="Superior ID">
+          <select id="superior" class="form-control" [(ngModel)]="selectedValue">
+              <!-- <option *ngFor="const value of superiorList" (click)="select(value.userID)">{{value.userName}}</option> -->
+              <option *ngFor="let value of superiorList" [ngValue]="value">{{value.userName}}</option>
+              <!-- <option *ngFor="let value of superiorList">{{value.userName}}</option> -->
+          </select>
         </div>
-      </div> -->
+      </div>
 
       <div class="form-group row" [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
         <label for="inputEmail" class="col-sm-2 control-label">Email</label>
@@ -54,10 +59,24 @@
       </div>
       <div class="form-group row" [ngClass]="{'has-error': (!repeatPassword.valid && repeatPassword.touched), 'has-success': (repeatPassword.valid && repeatPassword.touched)}">
         <label for="inputRPassword" class="col-sm-2 control-label">Repeat</label>
-        
+
         <div class="col-sm-10">
           <input [formControl]="repeatPassword" type="password" class="form-control" id="inputRPassword" placeholder="Confirm Password">
           <span *ngIf="!passwords.valid && (password.touched || repeatPassword.touched)" class="help-block sub-little-text">Passwords don't match.</span>
+        </div>
+      </div>
+      <div class="form-group row" [ngClass]="{'has-error': (!activestart.valid && activestart.touched), 'has-success': (activestart.valid && activestart.touched)}">
+        <label for="inputStartDate" class="col-sm-2 control-label">Effective Date</label>
+
+        <div class="col-sm-10">
+          <input [formControl]="activestart" type="date" class="form-control" id="inputStartDate" placeholder="Effective Date">
+        </div>
+      </div>
+      <div class="form-group row" [ngClass]="{'has-error': (!activeend.valid && activeend.touched), 'has-success': (activeend.valid && activeend.touched)}">
+        <label for="inputEndDate" class="col-sm-2 control-label">Termination Date</label>
+
+        <div class="col-sm-10">
+          <input [formControl]="activeend" type="date" class="form-control" id="inputEndDate" placeholder="Termination Date">
         </div>
       </div>
       <div class="form-group row">

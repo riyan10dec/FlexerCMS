@@ -9,7 +9,7 @@ import { routing } from './fxdepartment.routing';
 import { FXDepartmentService } from './fxdepartment.service';
 import { ApiService } from '../../shared/apiService';
 import { JwtService } from '../../shared/jwt.service';
-import { ConnectionAPI } from '../../../environments/connectionAPI';
+import { connectionAPI } from '../../../environments/connectionAPI';
 
 @NgModule({
   imports: [
@@ -27,7 +27,6 @@ import { ConnectionAPI } from '../../../environments/connectionAPI';
     FXDepartmentService,
     ApiService,
     JwtService,
-    ConnectionAPI,
   ],
 })
 export class FXDepartmentModule { }

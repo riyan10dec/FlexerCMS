@@ -8,7 +8,7 @@ import { routing } from './fxregister.routing';
 import { FXRegisterService } from './fxregister.service';
 import { ApiService } from '../../shared/apiService';
 import { JwtService } from '../../shared/jwt.service';
-import { ConnectionAPI } from '../../../environments/connectionAPI';
+import { connectionAPI } from '../../../environments/connectionAPI';
 
 @NgModule({
   imports: [
@@ -25,7 +25,6 @@ import { ConnectionAPI } from '../../../environments/connectionAPI';
     FXRegisterService,
     ApiService,
     JwtService,
-    ConnectionAPI,
   ],
 })
 export class FXRegisterModule { }
