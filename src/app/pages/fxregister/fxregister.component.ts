@@ -33,7 +33,7 @@ export class FXRegisterComponent implements OnInit {
   userid: number = 2;
   data: any;
   selectedSuperior: any;
-  
+
   // onSuperiorChange(superiorID: any) {
   //   // some code I execute after ngModel changes.
   // }
@@ -75,13 +75,13 @@ export class FXRegisterComponent implements OnInit {
     this.submitted = true;
     // if (this.form.valid) {
     //  } 
-     // your code goes here
-      //  console.log(values);
+    // your code goes here
+    //  console.log(values);
 
-      this.mapData();
-      this.mapJSON();
-      //this.getPing();
-      this.addNewEmployee();
+    this.mapData();
+    this.mapJSON();
+    //this.getPing();
+    this.addNewEmployee();
     //}
   }
 
@@ -90,7 +90,7 @@ export class FXRegisterComponent implements OnInit {
       datax => {
         this.superiorList = [];
         datax.employees.forEach(data => {
-          
+
           const value = new FXRegister();
           value.activeStatus = data.activeStatus;
           value.departmentName = data.departmentName;
@@ -106,24 +106,24 @@ export class FXRegisterComponent implements OnInit {
         // this.superiorList = a;
       },
       errors => {
-// console.log(errors);
+        // console.log(errors);
       });
-      // const x = this.superiorList;
+    // const x = this.superiorList;
   }
 
-//   superiorListx:any;
-//   private getSuperiorDummy() {
-//       this.superiorListx =[{
-//         userName: 'asdasdsa',
-//         userID: 1,
-//       }];
-       
-// }
+  //   superiorListx:any;
+  //   private getSuperiorDummy() {
+  //       this.superiorListx =[{
+  //         userName: 'asdasdsa',
+  //         userID: 1,
+  //       }];
+
+  // }
 
   private mapData() {
     this.fxRegister = new FXRegister();
     this.fxRegister.clientID = 1;
-     this.fxRegister.userName = this.name;
+    this.fxRegister.userName = this.name;
     this.fxRegister.employeeID = this.employeeID;
     this.fxRegister.positionName = this.position;
     this.fxRegister.departmentName = this.department;
