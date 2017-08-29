@@ -1,89 +1,75 @@
 <div class="auth-main">
   <div class="auth-block">
     <h1>Register User to Flexer</h1>
-    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
-      <div class="form-group row" [ngClass]="{'has-error': (!name.valid && name.touched), 'has-success': (name.valid && name.touched)}">
-        <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-        <div class="col-sm-10">
-          <input [formControl]="name" [(ngModel)]="fxRegister.name" type="text" class="form-control" id="inputName" placeholder="Full Name">
-        </div>
+    <!-- <form (click)="onSubmit()" class="form-horizontal"> -->
+    <div class="form-group row">
+      <label for="nameL" class="col-sm-2 control-label">Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="name" [(ngModel)] = "name" placeholder="Full Name">
       </div>
-      <div class="form-group row" [ngClass]="{'has-error': (!id.valid && id.touched), 'has-success': (id.valid && id.touched)}">
-        <label for="inputID" class="col-sm-2 control-label">ID</label>
-
-        <div class="col-sm-10">
-          <input [formControl]="id" type="text" class="form-control" id="inputID" placeholder="Employee ID">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="employeeIDL" class="col-sm-2 control-label">ID</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="employeeID" [(ngModel)] = "employeeID" placeholder="Employee ID">
       </div>
-      <div class="form-group row" [ngClass]="{'has-error': (!position.valid && position.touched), 'has-success': (position.valid && position.touched)}">
-        <label for="inputPosition" class="col-sm-2 control-label">Position</label>
-
-        <div class="col-sm-10">
-          <input [formControl]="position" type="text" class="form-control" id="inputPosition" placeholder="Position">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="positionL" class="col-sm-2 control-label">Position</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="position" [(ngModel)] = "position" placeholder="Position">
       </div>
-      <div class="form-group row" [ngClass]="{'has-error': (!department.valid && department.touched), 'has-success': (department.valid && department.touched)}">
-        <label for="inputDepartment" class="col-sm-2 control-label">Department</label>
-
-        <div class="col-sm-10">
-          <input [formControl]="department" type="text" class="form-control" id="inputDepartment" placeholder="Department">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="departmentL" class="col-sm-2 control-label">Department</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="department" [(ngModel)] = "department" placeholder="Department">
       </div>
-      <div class="form-group row">
-        <label for="inputSuperior" class="col-sm-2 control-label">Superior</label>
-
-
-        <div class="col-sm-10">
-          <select id="superior" class="form-control" [(ngModel)]="selectedValue">
-              <!-- <option *ngFor="const value of superiorList" (click)="select(value.userID)">{{value.userName}}</option> -->
-              <option *ngFor="let value of superiorList" [ngValue]="value">{{value.userName}}</option>
-              <!-- <option *ngFor="let value of superiorList">{{value.userName}}</option> -->
-          </select>
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="superiorL" class="col-sm-2 control-label">Superior</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="superior" [ngModel]="selectedSuperior">
+          <option value="undefined" disabled selected hidden>--Please Select One--</option>
+          <option *ngFor="let value of superiorList" [ngValue]="value.userID">{{ value.userName }}</option>
+        </select>
       </div>
-
-      <div class="form-group row" [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
-        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-        <div class="col-sm-10">
-          <input [formControl]="email" type="email" class="form-control" id="inputEmail" placeholder="Email">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="emailL" class="col-sm-2 control-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" [(ngModel)] = "email" placeholder="Email">
       </div>
-      <div class="form-group row" [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
-        <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-
-        <div class="col-sm-10">
-          <input [formControl]="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="passwordL" class="col-sm-2 control-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="password" [(ngModel)] = "password" placeholder="Password">
       </div>
-      <div class="form-group row" [ngClass]="{'has-error': (!repeatPassword.valid && repeatPassword.touched), 'has-success': (repeatPassword.valid && repeatPassword.touched)}">
-        <label for="inputRPassword" class="col-sm-2 control-label">Repeat</label>
-
-        <div class="col-sm-10">
-          <input [formControl]="repeatPassword" type="password" class="form-control" id="inputRPassword" placeholder="Confirm Password">
-          <span *ngIf="!passwords.valid && (password.touched || repeatPassword.touched)" class="help-block sub-little-text">Passwords don't match.</span>
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="cPasswordL" class="col-sm-2 control-label">Repeat</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="cPassword" [(ngModel)] = "cPassword" placeholder="Confirm Password">
       </div>
-      <div class="form-group row" [ngClass]="{'has-error': (!activestart.valid && activestart.touched), 'has-success': (activestart.valid && activestart.touched)}">
-        <label for="inputStartDate" class="col-sm-2 control-label">Effective Date</label>
-
-        <div class="col-sm-10">
-          <input [formControl]="activestart" type="date" class="form-control" id="inputStartDate" placeholder="Effective Date">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="activeDateL" class="col-sm-2 control-label">Effective Date</label>
+      <div class="col-sm-10">
+        <input type="date" class="form-control" id="activeDate" [(ngModel)] = "activeDate" placeholder="Effective Date">
       </div>
-      <div class="form-group row" [ngClass]="{'has-error': (!activeend.valid && activeend.touched), 'has-success': (activeend.valid && activeend.touched)}">
-        <label for="inputEndDate" class="col-sm-2 control-label">Termination Date</label>
-
-        <div class="col-sm-10">
-          <input [formControl]="activeend" type="date" class="form-control" id="inputEndDate" placeholder="Termination Date">
-        </div>
+    </div>
+    <div class="form-group row">
+      <label for="endDateL" class="col-sm-2 control-label">Termination Date</label>
+      <div class="col-sm-10">
+        <input type="date" class="form-control" id="endDate" [(ngModel)] = "endDate" placeholder="Termination Date">
       </div>
-      <div class="form-group row">
-        <div class="offset-sm-2 col-sm-10">
-          <button [disabled]="!form.valid" type="submit" class="btn btn-default btn-auth">Register</button>
-        </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button type="submit" (click)="onSubmit()" class="btn btn-default btn-auth">Register</button>
       </div>
-    </form>
+    </div>
+    <!-- </form> -->
   </div>
 </div>

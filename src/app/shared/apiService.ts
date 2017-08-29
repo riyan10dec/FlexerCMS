@@ -21,7 +21,7 @@ export class ApiService {
   private connection: string;
 
   private setHeaders(): Headers {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDM4MjczMTUsIm5hbWUiOiIxMDcifQ.5M-AXuutQ9ICUoH67XeETVswWNAC1kEUt9i28Tn763M';
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDQxMDY1NzksIm5hbWUiOiIxMjkifQ.1dTUR3tb8YLefPwBinxoDDhTV24fT0OEmtdGCIM86ew';
 
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Accept', 'application/json');

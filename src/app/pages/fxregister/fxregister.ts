@@ -16,4 +16,6 @@ export class FXRegister {
     activeStatus: string;
     entryUser: number;
     lastActivity: string;
+
+    // constructor(key:number, value:string) {}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { EmailValidator, EqualPasswordsValidator } from '../../theme/validators';
 import { FXRegister } from './fxregister';
@@ -11,50 +11,71 @@ import { FXRegisterService } from './fxregister.service';
   providers: [FXRegisterService],
 })
 export class FXRegisterComponent implements OnInit {
-
-  // superiorList: FXRegister[] = [];
   superiorList: any;
-  form: FormGroup;
-  name: AbstractControl;
-  id: AbstractControl;
-  position: AbstractControl;
-  department: AbstractControl;
-  email: AbstractControl;
-  superior: AbstractControl;
-  password: AbstractControl;
-  repeatPassword: AbstractControl;
-  passwords: FormGroup;
+  // superiorList: any;
+  // form: FormGroup;
+  name: string;
+  employeeID: string;
+  position: string;
+  department: string;
+  superior: number;
+  email: string;
+  password: string;
+  cPassword: string;
+  activeDate: string;
+  endDate: string;
+
+  // passwords: FormGroup;
   fxRegister: FXRegister;
+  // fxRegisterSuperior: FXRegister;
   submitted: boolean = false;
   isAddEmployee: boolean = false;
   userid: number = 2;
   data: any;
+  selectedSuperior: any;
+  
+  // onSuperiorChange(superiorID: any) {
+  //   // some code I execute after ngModel changes.
+  // }
 
-  constructor(fb: FormBuilder, private fxRegisterService: FXRegisterService) {
-    // this.ngOnInit();
-    this.form = fb.group({
-      'name': ['', Validators.compose([Validators.required, Validators.minLength(1)])],
-      'id': ['', Validators.compose([Validators.required, Validators.minLength(1)])],
-      'position': ['', Validators.compose([Validators.required, Validators.minLength(1)])],
-      'department': ['', Validators.compose([Validators.required, Validators.minLength(1)])],
-      'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
-      'passwords': fb.group({
-        'password': ['', Validators.compose([Validators.required, Validators.minLength(8)])],
-        'repeatPassword': ['', Validators.compose([Validators.required, Validators.minLength(8)])],
-      }, { validator: EqualPasswordsValidator.validate('password', 'repeatPassword') }),
-    });
-    
-    // this.getSuperior();
+  constructor(private fxRegisterService: FXRegisterService) {
+    // this.form = fb.group({
+    //   'name': ['', Validators.compose([Validators.required, Validators.minLength(1)])],
+    //   'id': ['', Validators.compose([Validators.required, Validators.minLength(1)])],
+    //   'position': ['', Validators.compose([Validators.required, Validators.minLength(1)])],
+    //   'department': ['', Validators.compose([Validators.required, Validators.minLength(1)])],
+    //   'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
+    //   'passwords': fb.group({
+    //     'password': ['', Validators.compose([Validators.required, Validators.minLength(8)])],
+    //     'repeatPassword': ['', Validators.compose([Validators.required, Validators.minLength(8)])],
+    //   }, { validator: EqualPasswordsValidator.validate('password', 'repeatPassword') }),
+    // });
   }
 
   ngOnInit(): void {
     this.getSuperior();
+    // this.getSuperiorDummy();
   }
 
-  onSubmit(values: Object): void {
+  // onSubmit(values: Object): void {
+  //   this.submitted = true;
+  //   // if (this.form.valid) {
+  //   //  } 
+  //    // your code goes here
+  //     //  console.log(values);
+
+  //     this.mapData();
+  //     this.mapJSON();
+  //     //this.getPing();
+  //     this.addNewEmployee();
+  //   //}
+  // }
+
+  onSubmit(): void {
     this.submitted = true;
-    //if (this.form.valid) {
-      // your code goes here
+    // if (this.form.valid) {
+    //  } 
+     // your code goes here
       //  console.log(values);
 
       this.mapData();
@@ -65,13 +86,10 @@ export class FXRegisterComponent implements OnInit {
   }
 
   private getSuperior() {
-         this.superiorList = [];
-         
     this.fxRegisterService.getSuperior(this.userid).subscribe(
-      data => {
-      
-        // let a: any = [];  
-        data.employees.forEach(data => {
+      datax => {
+        this.superiorList = [];
+        datax.employees.forEach(data => {
           
           const value = new FXRegister();
           value.activeStatus = data.activeStatus;
@@ -83,6 +101,7 @@ export class FXRegisterComponent implements OnInit {
           value.userName = data.userName;
           // a.push(value);
           this.superiorList.push(value);
+          // console.log(this.superiorList);
         });
         // this.superiorList = a;
       },
@@ -92,33 +111,40 @@ export class FXRegisterComponent implements OnInit {
       // const x = this.superiorList;
   }
 
+//   superiorListx:any;
+//   private getSuperiorDummy() {
+//       this.superiorListx =[{
+//         userName: 'asdasdsa',
+//         userID: 1,
+//       }];
+       
+// }
+
   private mapData() {
     this.fxRegister = new FXRegister();
     this.fxRegister.clientID = 1;
-    this.fxRegister.userName =this.form.get('name').value;
-    this.fxRegister.employeeID = this.form.get('id').value;
-    //  this.form.controls['id'].value;
-    this.fxRegister.positionName = this.form.controls['position'].value;
-    this.fxRegister.departmentName = this.form.controls['department'].value;
+     this.fxRegister.userName = this.name;
+    this.fxRegister.employeeID = this.employeeID;
+    this.fxRegister.positionName = this.position;
+    this.fxRegister.departmentName = this.department;
     this.fxRegister.superiorID = -1;
-    this.fxRegister.email = this.form.controls['email'].value;
-    this.fxRegister.passwords = <FormGroup>this.form.controls['passwords'];
-    this.fxRegister.userPassword = this.fxRegister.passwords.controls['password'].value;
-    // this.fxRegister.activeStart = this.fxRegister.activeStart['activestart'].value;
-    // this.fxRegister.activeEnd = this.fxRegister.activeEnd['activeend'].value;
+    this.fxRegister.email = this.email;
+    this.password !== this.cPassword ? this.isAddEmployee = false : this.fxRegister.userPassword = this.password;
+    this.fxRegister.activeStart = this.activeDate;
+    this.fxRegister.activeEnd = this.endDate;
     this.fxRegister.entryUser = 1;
 
     this.fxRegister.clientID = 1;
-    this.fxRegister.superiorID = -1;
-    this.fxRegister.entryUser = 1;
     this.fxRegister.userName = 'asdssf';
-    this.fxRegister.employeeID = 'riyalnfersssss';
+    this.fxRegister.employeeID = 'riyalnfeasdrsssss';
     this.fxRegister.positionName = 'asdf';
     this.fxRegister.departmentName = 'asdf';
+    this.fxRegister.superiorID = -1;
     this.fxRegister.email = 'asdf@asdf.com';
     this.fxRegister.userPassword = 'asdfasdf';
     this.fxRegister.activeStart = '2017-01-01 09:00:00';
     this.fxRegister.activeEnd = '2017-01-31 09:00:00';
+    this.fxRegister.entryUser = 1;
   }
 
   private mapJSON() {
@@ -152,3 +178,4 @@ export class FXRegisterComponent implements OnInit {
       });
   }
 }
+
